@@ -267,6 +267,13 @@ export class RealtimeClient extends RealtimeEventHandler {
      */
     updateSession({ modalities, instructions, voice, input_audio_format, output_audio_format, input_audio_transcription, turn_detection, tools, tool_choice, temperature, max_response_output_tokens, }?: SessionResourceType): boolean;
     /**
+     * Sends message content and generates a response
+     * @param {"system"|"assistant"|"user"} role
+     * @param {Array<InputTextContentType|InputAudioContentType|TextContentType>} content
+     * @returns {true}
+     */
+    sendMessage(role?: "system" | "assistant" | "user", content?: Array<InputTextContentType | InputAudioContentType | TextContentType>): true;
+    /**
      * Sends user message content and generates a response
      * @param {Array<InputTextContentType|InputAudioContentType>} content
      * @returns {true}
@@ -336,8 +343,7 @@ export type SessionResourceType = {
     model?: string;
     modalities?: string[];
     instructions?: string;
-    voice?: "alloy"|"ash"|"ballad"|"coral"|"echo"|"sage"|"shimmer"|"verse";
-
+    voice?: "alloy" | "ash" | "ballad" | "coral" | "echo" | "sage" | "shimmer" | "verse";
     input_audio_format?: AudioFormatType;
     output_audio_format?: AudioFormatType;
     input_audio_transcription?: AudioTranscriptionType | null;
